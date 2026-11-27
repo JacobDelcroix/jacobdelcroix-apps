@@ -1,9 +1,79 @@
 @import 'tailwindcss';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+    --color-paper: #f6f1e7;
+    --color-paper-deep: #ece4d4;
+    --color-ink: #1b1a24;
+    --color-ink-soft: #5d5866;
+    --color-line: #ddd3c0;
+    --color-card: #fffdf8;
+}
+
+@layer base {
+    :root {
+        color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --color-paper: #14131b;
+            --color-paper-deep: #1c1b25;
+            --color-ink: #f2ede3;
+            --color-ink-soft: #a8a2b0;
+            --color-line: #2e2c3a;
+            --color-card: #1d1c26;
+        }
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-rendering: optimizeLegibility;
+    }
+
+    body {
+        @apply bg-paper text-ink font-sans antialiased;
+    }
+
+    ::selection {
+        background: color-mix(in srgb, #c9962f 35%, transparent);
+    }
+
+    :focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 3px;
+        border-radius: 6px;
+    }
+}
+
+/* Long-form pages (privacy, support) rendered from Markdown. */
+.prose-doc {
+    @apply text-[1.0625rem] leading-relaxed text-ink;
+
+    h1 { @apply hidden; }
+    h2 { @apply font-display text-2xl mt-12 mb-3 text-ink; }
+    h3 { @apply font-semibold text-lg mt-8 mb-2; }
+    p, ul, ol { @apply my-4; }
+    ul { @apply list-disc pl-6 space-y-1.5; }
+    ol { @apply list-decimal pl-6 space-y-1.5; }
+    a { @apply underline decoration-1 underline-offset-3; }
+    strong { @apply font-semibold; }
+    blockquote { @apply border-l-4 border-line pl-4 text-ink-soft; }
+    hr { @apply my-10 border-line; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .rise {
+        animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: calc(var(--i, 0) * 90ms);
+    }
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
 }

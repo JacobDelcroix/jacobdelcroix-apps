@@ -1,58 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Jacob Delcroix — Apps
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Le site de l'éditeur : une landing page pour toutes les apps, une page par app, et les pages que les
+stores et la pub demandent (confidentialité, support, mentions légales, `app-ads.txt`).
 
-## About Laravel
+Laravel 13, Blade et Tailwind 4, sans base de données. Le français est à la racine, l'anglais sous `/en`.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## URLs
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Page | Français | Anglais |
+|---|---|---|
+| Accueil | `/` | `/en` |
+| App | `/{app}` | `/en/{app}` |
+| Confidentialité | `/{app}/confidentialite` | `/en/{app}/privacy` |
+| Support | `/{app}/support` | `/en/{app}/support` |
+| Mentions légales | `/mentions-legales` | `/en/legal-notice` |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Plus, à la racine :
+- `/app-ads.txt` : lu par AdMob, il doit être à la racine du domaine déclaré comme site du
+  développeur sur les stores.
+- `/apps.json?except={app}` : la liste « Nos autres apps » des apps. Seules les apps qui ont un lien
+  de store y figurent. À mettre dans `BRAND_OTHER_APPS_URL`.
+- `/sitemap.xml`.
 
-## Learning Laravel
+## Ajouter une app
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Une entrée dans `config/apps.php` : nom, couleurs, plateformes, textes FR/EN, pub ou non.
+2. Ses textes dans `resources/content/{slug}/` : `privacy.fr.md`, `privacy.en.md`, `support.fr.md`,
+   `support.en.md`. `{email}` et `{publisher}` y sont remplacés.
+3. Ses images dans `public/images/apps/{slug}/` : `icon.png` (512 px) et, si besoin, des captures
+   `fr-1.jpg`, `en-1.jpg`… (leur nombre va dans `screenshots`).
+4. Une fois l'app publiée, ses liens de store dans l'env (`ATOUT_TAROT_APP_STORE_URL`,
+   `ATOUT_TAROT_PLAY_STORE_URL`, `HOOPARO_APP_STORE_URL`) : les badges remplacent « Bientôt ».
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## En local
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Herd sert le dossier : <http://jacobdelcroix-apps.test>.
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install && npm install && npm run build
+php artisan test --compact
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Mise en ligne (Laravel Cloud)
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Laravel Cloud → New application → ce dépôt GitHub, branche `main`.
+2. Build : `composer install --no-dev` puis `npm ci && npm run build` (réglage par défaut).
+3. Variables : `APP_KEY`, `APP_URL` (le domaine final), `APP_ENV=production`, `APP_DEBUG=false`,
+   et les liens de store quand ils existent. Pas de base de données : laisser `DB_CONNECTION=sqlite`.
+4. Domaine : le domaine `*.laravel.cloud` suffit pour commencer. Il devient le « site du
+   développeur » dans App Store Connect, Play Console et AdMob. Changer de domaine plus tard oblige
+   à le mettre à jour dans les trois.
