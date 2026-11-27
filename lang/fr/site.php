@@ -43,7 +43,7 @@ return [
     'legal_publisher_text' => 'Ce site et les applications qui y sont présentées sont édités par :name, développeur indépendant.',
     'legal_contact' => 'Contact',
     'legal_hosting' => 'Hébergement',
-    'legal_hosting_text' => 'Le site est hébergé par Laravel Cloud (Laravel Holdings Inc.), cloud.laravel.com.',
+    'legal_hosting_text' => 'Le site est hébergé par GitHub Pages, un service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (github.com).',
     'legal_data' => 'Données personnelles',
     'legal_data_text' => 'Ce site ne dépose aucun cookie de suivi et n\'utilise aucun outil de mesure d\'audience. Chaque application a sa propre politique de confidentialité :',
     'legal_ip' => 'Propriété intellectuelle',

@@ -67,3 +67,5 @@ En statique, `/apps.json?except=x` n'existe pas : chaque app lit `/apps/{slug}.j
 4. Domaine : le domaine `*.laravel.cloud` suffit pour commencer. Il devient le « site du
    développeur » dans App Store Connect, Play Console et AdMob. Changer de domaine plus tard oblige
    à le mettre à jour dans les trois.
+5. Penser à changer `legal_hosting_text` (`lang/*/site.php`) : les mentions légales nomment
+   l'hébergeur.

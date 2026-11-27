@@ -43,7 +43,7 @@ return [
     'legal_publisher_text' => 'This website and the apps it presents are published by :name, independent developer.',
     'legal_contact' => 'Contact',
     'legal_hosting' => 'Hosting',
-    'legal_hosting_text' => 'The website is hosted by Laravel Cloud (Laravel Holdings Inc.), cloud.laravel.com.',
+    'legal_hosting_text' => 'The website is hosted by GitHub Pages, a service of GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States (github.com).',
     'legal_data' => 'Personal data',
     'legal_data_text' => 'This website sets no tracking cookie and uses no analytics. Each app has its own privacy policy:',
     'legal_ip' => 'Intellectual property',
