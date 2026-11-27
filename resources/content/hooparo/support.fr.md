@@ -32,7 +32,7 @@ jeu et le +/- de chaque joueur sont calculés automatiquement.
 
 Sur votre appareil, et dans votre compte iCloud si vous y êtes connecté. Hooparo n'a pas de serveur :
 personne d'autre que vous n'y a accès. Sans iCloud, l'application fonctionne normalement et vos
-données restent sur l'appareil. Plus de détails dans la [politique de confidentialité](confidentialite).
+données restent sur l'appareil. Plus de détails dans la [politique de confidentialité](/hooparo/confidentialite).
 
 ### Les données se synchronisent-elles entre mon iPhone et mon iPad ?
 

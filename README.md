@@ -41,7 +41,24 @@ composer install && npm install && npm run build
 php artisan test --compact
 ```
 
-## Mise en ligne (Laravel Cloud)
+## Mise en ligne aujourd'hui (GitHub Pages)
+
+Le site est publié en statique sur <https://jacobdelcroix.github.io>, depuis le dépôt public
+`JacobDelcroix/JacobDelcroix.github.io` (dossier `~/Sites/jacobdelcroix.github.io`). Ce dépôt ne
+contient que le site généré : on ne le modifie jamais à la main.
+
+Après un changement ici :
+
+```bash
+npm run build
+php artisan site:export ../jacobdelcroix.github.io --url=https://jacobdelcroix.github.io
+cd ../jacobdelcroix.github.io && git add -A && git commit -m "Update site" && git push
+```
+
+En statique, `/apps.json?except=x` n'existe pas : chaque app lit `/apps/{slug}.json`
+(par exemple `https://jacobdelcroix.github.io/apps/atout-tarot.json`).
+
+## Plus tard (Laravel Cloud)
 
 1. Laravel Cloud → New application → ce dépôt GitHub, branche `main`.
 2. Build : `composer install --no-dev` puis `npm ci && npm run build` (réglage par défaut).

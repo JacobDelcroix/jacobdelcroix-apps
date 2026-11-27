@@ -30,7 +30,7 @@ player's minutes and +/- are computed automatically.
 
 On your device, and in your iCloud account if you're signed in. Hooparo has no server: nobody but
 you can access it. Without iCloud, the app works normally and your data stays on the device. More
-details in the [privacy policy](privacy).
+details in the [privacy policy](/en/hooparo/privacy).
 
 ### Does my data sync between my iPhone and iPad?
 
