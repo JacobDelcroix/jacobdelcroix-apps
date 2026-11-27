@@ -85,8 +85,12 @@ final class ExportStaticSite extends Command
             $prefix = Localized::prefix($locale) === '' ? '' : '/'.Localized::prefix($locale);
             $pages = ['', '/'.Localized::segment('legal', $locale)];
 
-            foreach ($catalog->slugs() as $slug) {
-                array_push($pages, "/{$slug}", "/{$slug}/".Localized::segment('privacy', $locale), "/{$slug}/support");
+            foreach ($catalog->all() as $app) {
+                array_push($pages, "/{$app->slug}", "/{$app->slug}/".Localized::segment('privacy', $locale), "/{$app->slug}/support");
+
+                if ($app->hasDocument('terms')) {
+                    $pages[] = "/{$app->slug}/".Localized::segment('terms', $locale);
+                }
             }
 
             foreach ($pages as $page) {

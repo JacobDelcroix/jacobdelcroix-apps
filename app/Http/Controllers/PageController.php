@@ -29,6 +29,11 @@ final class PageController extends Controller
         return $this->document($this->findOrFail($app), 'privacy');
     }
 
+    public function terms(string $app): View
+    {
+        return $this->document($this->findOrFail($app), 'terms');
+    }
+
     public function support(string $app): View
     {
         return $this->document($this->findOrFail($app), 'support');
@@ -44,8 +49,8 @@ final class PageController extends Controller
      */
     private function document(StoreApp $app, string $page): View
     {
-        $path = resource_path('content/'.$app->slug.'/'.$page.'.'.app()->getLocale().'.md');
-        abort_unless(File::exists($path), 404);
+        abort_unless($app->hasDocument($page), 404);
+        $path = $app->documentPath($page, app()->getLocale());
 
         $markdown = strtr(File::get($path), [
             '{email}' => (string) config('apps.publisher.email'),

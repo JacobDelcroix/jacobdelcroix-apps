@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Support\AppCatalog;
 
 dataset('pages', function (): array {
-    $pages = ['/', '/en', '/mentions-legales', '/en/legal-notice'];
+    $pages = ['/', '/en', '/mentions-legales', '/en/legal-notice', '/atout-tarot/conditions', '/en/atout-tarot/terms'];
 
     foreach (['atout-tarot', 'hooparo'] as $slug) {
         array_push(
@@ -45,7 +45,21 @@ it('leaves no placeholder in the legal documents', function (string $path): void
     '/atout-tarot/confidentialite', '/en/atout-tarot/privacy',
     '/hooparo/confidentialite', '/en/hooparo/privacy',
     '/atout-tarot/support', '/en/hooparo/support',
+    '/atout-tarot/conditions', '/en/atout-tarot/terms',
 ]);
+
+it('serves the terms of use only for apps that have them', function (): void {
+    $this->get('/atout-tarot/conditions')
+        ->assertSee('Conditions d\'utilisation — Atout Tarot')
+        ->assertSee('href="'.url('/en/atout-tarot/terms').'"', false);
+    $this->get('/atout-tarot')->assertSee(url('/atout-tarot/conditions'), false);
+
+    $this->get('/hooparo/conditions')->assertNotFound();
+    $this->get('/hooparo')->assertDontSee(url('/hooparo/conditions'), false);
+    $this->get('/sitemap.xml')
+        ->assertSee(url('/en/atout-tarot/terms'), false)
+        ->assertDontSee(url('/en/hooparo/terms'), false);
+});
 
 it('mentions ads only in the privacy policy of apps that show them', function (): void {
     $this->get('/atout-tarot/confidentialite')->assertSee('AdMob');

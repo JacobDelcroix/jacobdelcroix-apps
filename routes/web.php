@@ -23,6 +23,7 @@ foreach (Localized::LOCALES as $locale) {
             Route::get(Localized::segment('legal', $locale), [PageController::class, 'legal'])->name('legal');
             Route::get('{app}', [PageController::class, 'app'])->whereIn('app', $slugs)->name('apps.show');
             Route::get('{app}/'.Localized::segment('privacy', $locale), [PageController::class, 'privacy'])->whereIn('app', $slugs)->name('apps.privacy');
+            Route::get('{app}/'.Localized::segment('terms', $locale), [PageController::class, 'terms'])->whereIn('app', $slugs)->name('apps.terms');
             Route::get('{app}/support', [PageController::class, 'support'])->whereIn('app', $slugs)->name('apps.support');
         });
 }

@@ -62,6 +62,10 @@ final class FeedController extends Controller
                 foreach (['apps.show', 'apps.privacy', 'apps.support'] as $name) {
                     $urls[] = Localized::route($name, ['app' => $app->slug], $locale);
                 }
+
+                if ($app->hasDocument('terms')) {
+                    $urls[] = Localized::route('apps.terms', ['app' => $app->slug], $locale);
+                }
             }
         }
 

@@ -85,6 +85,22 @@ final readonly class StoreApp
         return $this->features[$locale] ?? $this->features['en'] ?? [];
     }
 
+    /**
+     * Markdown source of a page (privacy, terms, support) in resources/content/{slug}/.
+     */
+    public function documentPath(string $page, string $locale): string
+    {
+        return resource_path('content/'.$this->slug.'/'.$page.'.'.$locale.'.md');
+    }
+
+    /**
+     * Optional pages, like the terms of use, only exist for some apps.
+     */
+    public function hasDocument(string $page): bool
+    {
+        return is_file($this->documentPath($page, 'fr')) && is_file($this->documentPath($page, 'en'));
+    }
+
     public function iconUrl(): string
     {
         return asset('images/apps/'.$this->slug.'/icon.png');

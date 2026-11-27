@@ -29,6 +29,8 @@ return [
     'screenshots_title' => 'Screenshots',
     'privacy' => 'Privacy',
     'support' => 'Support',
+    'terms' => 'Terms of Use',
+    'terms_title' => 'Terms of Use — :name',
     'privacy_title' => 'Privacy Policy — :name',
     'support_title' => 'Support — :name',
     'back_to_app' => 'Back to :name',

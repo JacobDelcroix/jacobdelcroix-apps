@@ -15,11 +15,14 @@ it('exports every page as static files with the public root URL', function (): v
         'index.html', 'en/index.html', 'mentions-legales/index.html', 'en/legal-notice/index.html',
         'atout-tarot/index.html', 'atout-tarot/confidentialite/index.html', 'atout-tarot/support/index.html',
         'en/atout-tarot/privacy/index.html', 'en/hooparo/support/index.html',
+        'atout-tarot/conditions/index.html', 'en/atout-tarot/terms/index.html',
         'app-ads.txt', 'apps.json', 'apps/atout-tarot.json', 'sitemap.xml', '.nojekyll',
         'images/apps/atout-tarot/icon.png',
     ] as $file) {
         expect($directory.'/'.$file)->toBeFile();
     }
+
+    expect($directory.'/hooparo/conditions/index.html')->not->toBeFile();
 
     expect(File::get($directory.'/atout-tarot/confidentialite/index.html'))
         ->toContain('https://example.github.io/en/atout-tarot/privacy')

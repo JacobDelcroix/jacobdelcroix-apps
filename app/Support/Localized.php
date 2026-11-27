@@ -20,8 +20,8 @@ final class Localized
      * @var array<string, array<string, string>>
      */
     public const array SEGMENTS = [
-        'fr' => ['privacy' => 'confidentialite', 'legal' => 'mentions-legales'],
-        'en' => ['privacy' => 'privacy', 'legal' => 'legal-notice'],
+        'fr' => ['privacy' => 'confidentialite', 'terms' => 'conditions', 'legal' => 'mentions-legales'],
+        'en' => ['privacy' => 'privacy', 'terms' => 'terms', 'legal' => 'legal-notice'],
     ];
 
     public static function segment(string $key, string $locale): string

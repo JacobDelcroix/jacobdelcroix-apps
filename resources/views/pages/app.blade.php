@@ -51,6 +51,9 @@
         <div class="flex flex-wrap gap-3">
             <a href="{{ Localized::route('apps.support', ['app' => $app->slug]) }}" class="rounded-full border border-line px-5 py-2.5 hover:bg-paper-deep transition-colors">{{ __('site.support') }}</a>
             <a href="{{ Localized::route('apps.privacy', ['app' => $app->slug]) }}" class="rounded-full border border-line px-5 py-2.5 hover:bg-paper-deep transition-colors">{{ __('site.privacy') }}</a>
+            @if ($app->hasDocument('terms'))
+                <a href="{{ Localized::route('apps.terms', ['app' => $app->slug]) }}" class="rounded-full border border-line px-5 py-2.5 hover:bg-paper-deep transition-colors">{{ __('site.terms') }}</a>
+            @endif
         </div>
     </section>
 </x-layouts.site>

@@ -29,6 +29,8 @@ return [
     'screenshots_title' => 'Captures d\'écran',
     'privacy' => 'Confidentialité',
     'support' => 'Support',
+    'terms' => 'Conditions d\'utilisation',
+    'terms_title' => 'Conditions d\'utilisation — :name',
     'privacy_title' => 'Politique de confidentialité — :name',
     'support_title' => 'Support — :name',
     'back_to_app' => 'Retour à :name',
